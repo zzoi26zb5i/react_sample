@@ -9,21 +9,22 @@ class TodoApp extends React.Component{
       tasks: [{name:"yuu"}],
       id: 1
     };
-    this.addtodo = this.addtodo.bind(this);
   }
-
-  addtodo = (name)=>{
-    const {
-      tasks
-    } = this.state;
-    tasks.push({ name })
-    this.setState({ tasks });
-  }
-
   render() {
+    const reset = () => {
+      this.setState({tasks:[]})
+    }
+    const addtodo = (name)=>{
+      const {
+        tasks
+      } = this.state;
+      tasks.push({ name })
+      this.setState({ tasks });
+    }
     return (
       <div>
-        <TodoInput addtodo={this.addtodo} />
+        <TodoInput addtodo={addtodo} />
+        <button onClick={reset} >リセット</button>
         <TodoList tasks={this.state.tasks}/>
       </div>
     )
